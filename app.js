@@ -54,6 +54,9 @@ app.use("/", authRoutes);
 var canalRoutes = require("./routes/canal-routes");
 app.use("/", canalRoutes);
 
+const reviewRoutes = require('./routes/product-reviews');
+app.use('/', reviewRoutes);
+
 // =======================================
 
 

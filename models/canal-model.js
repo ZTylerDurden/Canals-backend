@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var integerValidator = require('mongoose-integer');
+const Review = require('../models/review');
 
 // create geolocation Schema
 const GeoSchema = new Schema({
@@ -45,6 +46,7 @@ const CanalSchema = new Schema({
             required: true,
             ref: 'User'
         },
+        reviews: [Review.schema],
         observations: [String],
         // add in maps location 
         geometry: GeoSchema
