@@ -20,9 +20,6 @@ const CanalSchema = new Schema({
         canalName: { 
         type: String 
         },
-        location: {
-        type: String
-        },
         lat: {
             type: Number, 
             integer: true

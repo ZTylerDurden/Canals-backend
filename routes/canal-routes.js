@@ -12,14 +12,13 @@ const myUploader = multer({
 
 
 // create new phone, can also use POSTMAN to create a new phone object
-canalRoutes.post('/api/canals/new', myUploader.single('phoneImage'), (req, res, next) => {
+canalRoutes.post('/api/canals', myUploader.single('canalImage'), (req, res, next) => {
     if(!req.user){
         res.status(401).json({message: "Log in to create canal."});
         return;
     }
     const newCanal = new Canal({
       canalName: req.body.canalName,
-      location: req.body.location,
       lat: req.body.lat,
       lng: req.body.lng,
       description: req.body.description,
@@ -29,7 +28,7 @@ canalRoutes.post('/api/canals/new', myUploader.single('phoneImage'), (req, res, 
       owner: req.user._id
     });
     if(req.file){
-        newCanal.image = '/uploads' + req.file.filename;
+        newCanal.image = '/uploads/' + req.file.filename;
     }
 
     newCanal.save((err) => {
@@ -107,7 +106,6 @@ canalRoutes.put('/api/canals/:id', (req, res, next) => {
 
     const updates = {
       canalName: req.body.canalName,
-      location: req.body.location,
       lat: req.body.lat,
       lng: req.body.lng,
       description: req.body.description,
