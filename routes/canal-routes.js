@@ -25,7 +25,7 @@ canalRoutes.post('/api/canals', myUploader.single('canalImage'), (req, res, next
       fishTypes: req.body.fishTypes,
       image: req.body.image,
       observations: req.body.observations,
-      owner: req.user._id
+      owner: req.user.username
     });
     if(req.file){
         newCanal.image = '/uploads/' + req.file.filename;
@@ -103,17 +103,20 @@ canalRoutes.put('/api/canals/:id', (req, res, next) => {
         res.status(400).json({ message: "Specified id is not valid" });
         return;
     }
-
+console.log("===================")
     const updates = {
       canalName: req.body.canalName,
       lat: req.body.lat,
       lng: req.body.lng,
       description: req.body.description,
       fishTypes: req.body.fishTypes,
-      image: req.body.image,
       observations: req.body.observations   
     };
 
+    console.log("image is:", req.body.image)
+    if (req.body.image){
+        updates.image = req.body.image;
+      }
   Canal.findByIdAndUpdate(req.params.id, updates, err => {
     if (err) {
       res.json(err);

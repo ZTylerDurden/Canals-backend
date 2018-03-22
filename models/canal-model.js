@@ -39,9 +39,10 @@ const CanalSchema = new Schema({
             type: String 
         },
         owner: { 
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: 'User'
+            type: String
+            // type: Schema.Types.ObjectId,
+            // required: true,
+            // ref: 'User'
         },
         reviews: [Review.schema],
         observations: [String],
