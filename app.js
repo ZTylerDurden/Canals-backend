@@ -9,10 +9,12 @@ var session = require('express-session');
 var passport = require('passport');
 var cors = require('cors');
 
+
 // passport set up
 require('./configs/passport-config');
+require("dotenv").config();
 
-mongoose.connect('mongodb://localhost/canal-server')
+mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
 
